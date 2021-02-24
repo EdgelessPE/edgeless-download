@@ -81,7 +81,7 @@ export default {
   },
   created() {
     //设置标题
-    document.title="下载Edgeless"
+    document.title="Edgeless 下载"
 
     //获取年份
     let date=new Date()
