@@ -68,7 +68,7 @@ export default {
   name:'Download',
   data(){
     return{
-      year:'2020',
+      year:2021,
       hub_version:"",
       hub_addr:"",
       enable_download:false
@@ -80,9 +80,6 @@ export default {
     }
   },
   created() {
-    //设置标题
-    document.title="Edgeless 下载"
-
     //获取年份
     let date=new Date()
     this.year=date.getFullYear()
