@@ -40,19 +40,29 @@
           </template>
           <img src="https://pineapple.edgeless.top/picbed/down/1.jpg" slot="icon" class="display_img"/>
           <template #extra>
-            <a-button key="console" type="primary" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/hub_addr')" :disabled="!enable_download">
-              立即下载
-            </a-button>
-            <a-dropdown-button v-on:click="goto('https://pineapple.edgeless.top/')">
-              访问下载站
-              <a-icon slot="icon" type="down" />
-              <a-menu slot="overlay">
-                <a-menu-item key="0" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
-                <a-menu-item key="1" v-on:click="goto('https://cno.lanzous.com/iFfxDehpnrg')"> <a-icon type="history" />下载旧版制作工具</a-menu-item>
-                <a-menu-item key="2" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/插件包')"> <a-icon type="shop" />浏览插件包</a-menu-item>
-                <a-menu-item key="3" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/主题资源包')"> <a-icon type="skin" />浏览主题资源包</a-menu-item>
-              </a-menu>
-            </a-dropdown-button>
+            <a-space direction="vertical">
+              <a-space>
+                <a-button key="console" type="primary" v-on:click="goto(enable_download?'https://pineapple.edgeless.top/api/v2/info/hub_addr':'https://wiki.edgeless.top/v2/guide/burn_manual.html')">
+                {{enable_download?'立即下载':'手动制作'}}
+              </a-button>
+                <a-dropdown-button v-on:click="goto('https://pineapple.edgeless.top/')">
+                  访问下载站
+                  <a-icon slot="icon" type="down" />
+                  <a-menu slot="overlay">
+                    <a-menu-item key="0" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
+                    <a-menu-item key="2" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/插件包')"> <a-icon type="shop" />浏览插件包</a-menu-item>
+                    <a-menu-item key="3" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/主题资源包')"> <a-icon type="skin" />浏览主题资源包</a-menu-item>
+                  </a-menu>
+                </a-dropdown-button>
+              </a-space>
+              <br/>
+              <a-tooltip placement="right">
+                <template slot="title">Edgeless Hub的源代码已经公开在<a href="https://github.com/Cnotech/edgeless-hub" target="_blank">GitHub仓库</a>，欢迎审阅</template>
+
+                <p><a-icon type="question-circle" />  这个应用是否安全？ </p>
+              </a-tooltip>
+
+            </a-space>
           </template>
         </a-result>
       </a-layout-content>
@@ -107,7 +117,7 @@ export default {
         if(UA.os.version.original<10){
           this.$info({
             title:'您不在使用Windows10系统',
-            content:'Edgeless Hub只能在Windows10 64位系统上运行，请在下拉菜单中下载旧版制作工具'
+            content:'Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘'
           })
         }else{
           //判断系统位数
@@ -118,7 +128,7 @@ export default {
             //对Win10 32位系统进行提示
             this.$info({
               title:'您正在使用32位系统',
-              content:'Edgeless Hub只能在Windows10 64位系统上运行，请在下拉菜单中下载旧版制作工具'
+              content:'Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘'
             })
           }
         }
@@ -126,7 +136,7 @@ export default {
         //对非Windows用户提示下载ISO
         this.$info({
           title:'您正在使用类UNIX系统浏览此页面',
-          content:'请在下拉菜单中下载ISO然后使用Ventoy写入'
+          content:'请手动制作启动盘'
         })
       }
     }
