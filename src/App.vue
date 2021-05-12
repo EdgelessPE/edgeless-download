@@ -45,7 +45,7 @@
                 <a-button key="console" type="primary" v-on:click="goto(enable_download?'https://pineapple.edgeless.top/api/v2/info/hub_addr':'https://wiki.edgeless.top/v2/guide/burn_manual.html')">
                 {{enable_download?'立即下载':'手动制作'}}
               </a-button>
-                <a-dropdown-button v-on:click="goto('https://pineapple.edgeless.top/')">
+                <a-dropdown-button v-on:click="goto('https://zfile.edgeless.top/')">
                   访问下载站
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
