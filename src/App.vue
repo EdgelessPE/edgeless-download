@@ -50,8 +50,8 @@
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
                     <a-menu-item key="0" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
-                    <a-menu-item key="2" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/插件包')"> <a-icon type="shop" />浏览插件包</a-menu-item>
-                    <a-menu-item key="3" v-on:click="goto('https://pineapple.edgeless.top/#/2/main/主题资源包')"> <a-icon type="skin" />浏览主题资源包</a-menu-item>
+                    <a-menu-item key="2" v-on:click="goto('https://zfile.edgeless.top/#/2/main/插件包')"> <a-icon type="shop" />浏览插件包</a-menu-item>
+                    <a-menu-item key="3" v-on:click="goto('https://zfile.edgeless.top/#/2/main/主题资源包')"> <a-icon type="skin" />浏览主题资源包</a-menu-item>
                   </a-menu>
                 </a-dropdown-button>
               </a-space>
