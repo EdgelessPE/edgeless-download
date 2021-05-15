@@ -57,7 +57,7 @@
               </a-space>
               <br/>
               <a-tooltip placement="right">
-                <template slot="title">Edgeless Hub的源代码已经公开在<a href="https://github.com/Cnotech/edgeless-hub" target="_blank">GitHub仓库</a>，欢迎审阅</template>
+                <template slot="title">Edgeless Hub的源代码已经公开在<a href="https://github.com/EdgelessPE/edgeless-hub" target="_blank">GitHub仓库</a>，欢迎审阅</template>
 
                 <p><a-icon type="question-circle" />  这个应用是否安全？ </p>
               </a-tooltip>
