@@ -45,7 +45,7 @@
                 <a-button key="console" type="primary" v-on:click="goto(enable_download?'https://pineapple.edgeless.top/api/v2/info/hub_addr':'https://wiki.edgeless.top/v2/guide/burn_manual.html')">
                 {{enable_download?'立即下载':'手动制作'}}
               </a-button>
-                <a-dropdown-button v-on:click="goto('https://zfile.edgeless.top/')">
+                <a-dropdown-button v-on:click="stationAlert()">
                   访问下载站
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
@@ -87,6 +87,17 @@ export default {
   methods:{
     goto(url){
       document.location=url
+    },
+    stationAlert(){
+      this.$info({
+        title: '推荐使用Edgeless Hub',
+        content:'网页端下载站插件更新较为缓慢、不提供Edgeless机器人制作的插件、镜像源使用不稳定的OneDrive，获得更好的下载体验请使用Edgeless Hub',
+        onOk() {
+          document.location="https://zfile.edgeless.top"
+        },
+        okText:"好",
+        cancelText:"取消"
+      })
     }
   },
   created() {
