@@ -30,6 +30,12 @@
             banner
             closable
         />
+        <a-alert
+            v-else
+            message="2.05以下版本更新时如遇到报错，删除缓存文件夹内的Update文件夹即可"
+            banner
+            closable
+        />
         <a-result>
           <template slot="title">
             Edgeless Hub
