@@ -39,7 +39,7 @@
         <a-result>
           <template slot="title">
             Edgeless Hub
-            <a-tag color="blue">Beta {{hub_version}}</a-tag>
+            <a-tag color="blue" @click="goto('https://wiki.edgeless.top/v2/global/log.html#edgeless-hub更新日志',true)">Beta {{hub_version}}</a-tag>
           </template>
           <template slot="subTitle">
             使用Edgeless聚合客户端制作启动盘和个性化您的Edgeless
@@ -89,8 +89,10 @@ export default {
     }
   },
   methods:{
-    goto(url){
-      document.location=url
+    goto(url,newTab){
+      if(newTab){
+        window.open(url)
+      }else document.location=encodeURI(url)
     },
     stationAlert(){
       this.$info({
