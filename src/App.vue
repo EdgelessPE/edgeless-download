@@ -97,7 +97,7 @@ export default {
     stationAlert(){
       this.$info({
         title: '推荐使用Edgeless Hub',
-        content:'网页端下载站插件更新较为缓慢、不提供Edgeless机器人制作的插件、镜像源使用不稳定的OneDrive，获得更好的下载体验请使用Edgeless Hub',
+        content:'网页端下载站插件更新较为缓慢、镜像源使用不稳定的OneDrive，获得更好的下载体验请使用Edgeless Hub',
         onOk() {
           document.location="https://zfile.edgeless.top"
         },
