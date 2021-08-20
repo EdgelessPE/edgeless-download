@@ -32,9 +32,10 @@
         />
         <a-alert
             v-else
-            message="2.05以下版本更新时如遇到报错，删除缓存文件夹内的Update文件夹即可"
+            message="2.15版本无法检测热更新，请重新下载"
             banner
             closable
+            banner
         />
         <a-result>
           <template slot="title">
