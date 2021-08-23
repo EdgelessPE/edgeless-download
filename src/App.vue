@@ -35,7 +35,6 @@
             message="2.15版本无法检测热更新，请重新下载"
             banner
             closable
-            banner
         />
         <a-result>
           <template slot="title">
