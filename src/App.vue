@@ -51,11 +51,12 @@
                 <a-button key="console" type="primary" v-on:click="goto(enable_download?'https://pineapple.edgeless.top/api/v2/info/hub_addr':'https://wiki.edgeless.top/v2/guide/burn_manual.html')">
                 {{enable_download?'立即下载':'手动制作'}}
               </a-button>
-                <a-dropdown-button v-on:click="stationAlert()">
-                  访问下载站
+                <a-dropdown-button v-on:click="stationAlert('https://home.edgeless.top/jump/lurenjia.html')">
+                  访问备用站
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
-                    <a-menu-item key="0" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
+                    <a-menu-item key="0" v-on:click="stationAlert('https://home.edgeless.top/jump/189.html')"> <a-icon type="file" />访问天翼盘</a-menu-item>
+                    <a-menu-item key="1" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
                   </a-menu>
                 </a-dropdown-button>
               </a-space>
@@ -94,12 +95,12 @@ export default {
         window.open(url)
       }else document.location=encodeURI(url)
     },
-    stationAlert(){
+    stationAlert(url){
       this.$info({
         title: '推荐使用Edgeless Hub',
-        content:'网页端下载站插件更新较为缓慢、镜像源使用不稳定的OneDrive，获得更好的下载体验请使用Edgeless Hub',
+        content:'Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能。',
         onOk() {
-          document.location="https://zfile.edgeless.top"
+          document.location=url
         },
         okText:"好",
         cancelText:"取消",
