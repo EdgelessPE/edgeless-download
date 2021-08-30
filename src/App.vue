@@ -55,7 +55,7 @@
                   访问网页版
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
-                    <a-menu-item key="0" v-on:click="stationAlert('https://home.edgeless.top/jump/lurenjia.html')"> <a-icon type="cloud" />访问备用站</a-menu-item>
+                    <a-menu-item key="0" v-on:click="stationAlert('https://home.edgeless.top/jump/lurenjia.html')"> <a-icon type="hdd" />访问备用站</a-menu-item>
                     <a-menu-item key="1" v-on:click="stationAlert('https://home.edgeless.top/jump/189.html')"> <a-icon type="cloud" />访问天翼盘</a-menu-item>
                     <a-menu-item key="2" v-on:click="goto('https://pineapple.edgeless.top/api/v2/info/iso_addr')"> <a-icon type="file" />下载ISO镜像</a-menu-item>
                   </a-menu>
