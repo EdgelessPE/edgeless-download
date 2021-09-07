@@ -1,5 +1,15 @@
 <template>
   <div>
+    <a-drawer
+        title="感谢下载Edgeless Hub"
+        placement="bottom"
+        :closable="true"
+        :visible="drawerVisible"
+        @close="onCloseDrawer"
+    >
+      <p>我们强烈建议您阅读Wiki后再使用Edgeless，在这里有大部分问题的解决方案和所有的Edgeless特色功能</p>
+      <a-button type="primary" @click="goto('https://wiki.edgeless.top/v2/required.html')">好</a-button>
+    </a-drawer>
     <a-layout>
       <a-layout-header style="background-color: white">
         <a-space>
@@ -32,7 +42,7 @@
         />
         <a-alert
             v-else
-            message="2.15版本无法检测热更新，请重新下载"
+            message="由于发行时存在的一个Bug，Edgeless Hub 2.15版本无法检测热更新，请重新下载；给您造成的不便敬请谅解"
             banner
             closable
         />
@@ -48,9 +58,12 @@
           <template #extra>
             <a-space direction="vertical">
               <a-space>
-                <a-button key="console" type="primary" v-on:click="goto(enable_download?'https://pineapple.edgeless.top/api/v2/info/hub_addr':'https://wiki.edgeless.top/v2/guide/burn_manual.html')">
-                {{enable_download?'立即下载':'手动制作'}}
-              </a-button>
+                <template v-if="enable_download">
+                  <a-button key="console" type="primary" @click="onClickHubDownload">立即下载</a-button>
+                </template>
+                <template v-else>
+                  <a-button key="console" type="primary" @click="goto('https://wiki.edgeless.top/v2/guide/burn_manual.html')">手动制作</a-button>
+                </template>
                 <a-dropdown-button v-on:click="stationAlert('https://zfile.edgeless.top/')">
                   访问网页版
                   <a-icon slot="icon" type="down" />
@@ -87,7 +100,8 @@ export default {
       year:2021,
       hub_version:"",
       hub_addr:"",
-      enable_download:false
+      enable_download:false,
+      drawerVisible:false
     }
   },
   methods:{
@@ -95,6 +109,13 @@ export default {
       if(newTab){
         window.open(url)
       }else document.location=encodeURI(url)
+    },
+    onClickHubDownload(){
+      this.drawerVisible=true
+      this.goto('https://pineapple.edgeless.top/api/v2/info/hub_addr')
+    },
+    onCloseDrawer(){
+      this.drawerVisible=false
     },
     stationAlert(url){
       this.$info({
