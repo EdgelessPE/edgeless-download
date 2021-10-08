@@ -40,12 +40,7 @@
             banner
             closable
         />
-        <a-alert
-            v-else
-            message="由于发行时存在的一个Bug，Edgeless Hub 2.15版本无法检测热更新，请重新下载；给您造成的不便敬请谅解"
-            banner
-            closable
-        />
+        <Notice channel="Down"/>
         <a-result>
           <template slot="title">
             Edgeless Hub
@@ -92,6 +87,7 @@
   </div>
 </template>
 <script>
+import Notice from "@/Notice";
 const ua=require('ua-device')
 export default {
   name:'Download',
@@ -103,6 +99,9 @@ export default {
       enable_download:false,
       drawerVisible:false
     }
+  },
+  components:{
+    Notice
   },
   methods:{
     goto(url,newTab){

@@ -11,7 +11,8 @@
     "ant-design-vue": "^1.7.3",
     "core-js": "^3.6.5",
     "ua-device": "^0.1.10",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-cookies": "^1.7.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
