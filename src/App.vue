@@ -46,7 +46,7 @@
           banner
           closable
         />
-        <Notice v-if="enable_download" channel="Down" />
+        <Notice v-else channel="Down" />
         <a-result>
           <template slot="title">
             Edgeless Hub
