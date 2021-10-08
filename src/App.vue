@@ -59,7 +59,7 @@
                 <template v-else>
                   <a-button key="console" type="primary" @click="goto('https://wiki.edgeless.top/v2/guide/burn_manual.html')">手动制作</a-button>
                 </template>
-                <a-dropdown-button v-on:click="stationAlert('https://zfile.edgeless.top/')">
+                <a-dropdown-button v-on:click="stationAlert('https://zfile.edgeless.top/2/main')">
                   访问网页版
                   <a-icon slot="icon" type="down" />
                   <a-menu slot="overlay">
