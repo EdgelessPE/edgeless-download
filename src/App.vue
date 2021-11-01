@@ -185,16 +185,59 @@ export default {
       this.$info({
         title: "推荐使用Edgeless Hub",
         content:
-          "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能。",
+          "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
         onOk() {
           document.location = url;
         },
-        okText: "好",
-        cancelText: "取消",
+        onCancel:this.uaConfig,
+        okText: "继续前往",
         maskClosable: true,
         closable: true,
       });
     },
+    uaConfig(){
+      //判断ua
+      let UA = new ua(navigator.userAgent);
+      //console.log(UA);
+
+      //跳过安卓和iOS用户提示
+      if (UA.os.name === "iOS" || UA.os.name === "Android") {
+        this.$info({
+          title: "请使用PC访问本站",
+          content: "移动端无法获得最佳的浏览体验",
+        });
+        this.enable_download = true;
+      } else {
+        if (UA.os.name === "Windows") {
+          //判断是否为10
+          if (UA.os.version.original < 10) {
+            this.$info({
+              title: "您不在使用Windows10系统",
+              content:
+                  "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
+            });
+          } else {
+            //判断系统位数
+            let agent = navigator.userAgent.toLowerCase();
+            if (agent.indexOf("win64") >= 0 || agent.indexOf("wow64") >= 0) {
+              this.enable_download = true;
+            } else {
+              //对Win10 32位系统进行提示
+              this.$info({
+                title: "您正在使用32位系统",
+                content:
+                    "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
+              });
+            }
+          }
+        } else {
+          //对非Windows用户提示下载ISO
+          this.$info({
+            title: "您正在使用类UNIX系统浏览此页面",
+            content: "请手动制作启动盘",
+          });
+        }
+      }}
   },
   created() {
     //获取年份
@@ -223,50 +266,10 @@ export default {
         default :
           console.log("Error target index")
       }
+    }else {
+      this.uaConfig()
     }
 
-    //判断ua
-    let UA = new ua(navigator.userAgent);
-    console.log(UA);
-
-    //跳过安卓和iOS用户提示
-    if (UA.os.name === "iOS" || UA.os.name === "Android") {
-      this.$info({
-        title: "请使用PC访问本站",
-        content: "移动端无法获得最佳的浏览体验",
-      });
-      this.enable_download = true;
-    } else {
-      if (UA.os.name === "Windows") {
-        //判断是否为10
-        if (UA.os.version.original < 10) {
-          this.$info({
-            title: "您不在使用Windows10系统",
-            content:
-              "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
-          });
-        } else {
-          //判断系统位数
-          let agent = navigator.userAgent.toLowerCase();
-          if (agent.indexOf("win64") >= 0 || agent.indexOf("wow64") >= 0) {
-            this.enable_download = true;
-          } else {
-            //对Win10 32位系统进行提示
-            this.$info({
-              title: "您正在使用32位系统",
-              content:
-                "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
-            });
-          }
-        }
-      } else {
-        //对非Windows用户提示下载ISO
-        this.$info({
-          title: "您正在使用类UNIX系统浏览此页面",
-          content: "请手动制作启动盘",
-        });
-      }
-    }
 
   },
 };

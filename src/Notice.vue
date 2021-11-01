@@ -48,7 +48,7 @@ export default {
       }
     },
     recordId(){
-      this.$cookies.set('ignoreId',this.noticeData.id,'30d')
+      this.$cookies.set('ignoreId',this.noticeData.id,'30d',"/")
     }
   },
   created() {
