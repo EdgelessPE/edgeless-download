@@ -208,6 +208,23 @@ export default {
         this.hub_version = res.data;
       });
 
+    //获取跳转参数
+    let match=window.location.search.substring(1).match(/backup=[\d]/)
+    if(match){
+      let targetIndex=match[0].split("=")[1]
+      console.log(targetIndex)
+      switch (targetIndex) {
+        case "1":
+          this.stationAlert('https://home.edgeless.top/jump/lurenjia.html')
+          return
+        case "2":
+          this.stationAlert('https://home.edgeless.top/jump/189.html')
+          return
+        default :
+          console.log("Error target index")
+      }
+    }
+
     //判断ua
     let UA = new ua(navigator.userAgent);
     console.log(UA);
@@ -250,6 +267,7 @@ export default {
         });
       }
     }
+
   },
 };
 </script>
