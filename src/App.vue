@@ -1,37 +1,38 @@
 <template>
   <div>
     <a-drawer
-      title="感谢下载Edgeless Hub"
-      placement="bottom"
-      :closable="true"
-      :visible="drawerVisible"
-      @close="onCloseDrawer"
+        :closable="true"
+        :visible="drawerVisible"
+        placement="bottom"
+        title="感谢下载Edgeless Hub"
+        @close="onCloseDrawer"
     >
       <p>
         我们强烈建议您阅读Wiki后再使用Edgeless，在这里有大部分问题的解决方案和所有的Edgeless特色功能
       </p>
       <a-button
-        type="primary"
-        @click="goto('https://wiki.edgeless.top/v2/required.html')"
-        >好</a-button
+          type="primary"
+          @click="goto('https://wiki.edgeless.top/v2/required.html')"
+      >好
+      </a-button
       >
     </a-drawer>
     <a-layout>
       <a-layout-header style="background-color: white">
         <a-space>
-          <img class="logo" src="https://home.edgeless.top/favicon.ico" />
+          <img class="logo" src="https://home.edgeless.top/favicon.ico"/>
           <p class="title">&nbsp;&nbsp;&nbsp;&nbsp;Edgeless</p>
           <a-menu
-            mode="horizontal"
-            :default-selected-keys="['3']"
-            :style="{ lineHeight: '64px' }"
-            :selectable="false"
+              :default-selected-keys="['3']"
+              :selectable="false"
+              :style="{ lineHeight: '64px' }"
+              mode="horizontal"
           >
             <a-menu-item key="1">
-              <a target="_blank" href="https://home.edgeless.top">首页</a>
+              <a href="https://home.edgeless.top" target="_blank">首页</a>
             </a-menu-item>
             <a-menu-item key="2">
-              <a target="_blank" href="https://wiki.edgeless.top">文档</a>
+              <a href="https://wiki.edgeless.top" target="_blank">文档</a>
             </a-menu-item>
             <a-menu-item key="3">
               下载
@@ -41,105 +42,118 @@
       </a-layout-header>
       <a-layout-content style="padding: 0 50px;background-color: white">
         <a-alert
-          v-if="!enable_download"
-          message="Edgeless Hub只能在Windows10 64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛"
-          banner
-          closable
+            v-if="!enable_download"
+            banner
+            closable
+            message="Edgeless Hub只能在Windows10 64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛"
         />
-        <Notice v-else channel="Down" />
+        <Notice v-else channel="Down"/>
         <a-result>
           <template slot="title">
             Edgeless Hub
             <a-tag
-              color="blue"
-              @click="
+                color="blue"
+                @click="
                 goto(
                   'https://wiki.edgeless.top/v2/global/log.html#edgeless-hub更新日志-当前已发布最新版本-hub-beta',
                   true
                 )
               "
-              >Beta {{ hub_version }}</a-tag
+            >Beta {{ hub_version }}
+            </a-tag
             >
           </template>
           <template slot="subTitle">
             使用Edgeless聚合客户端制作启动盘和个性化您的Edgeless
           </template>
           <img
-            src="https://pineapple.edgeless.top/picbed/down/1.jpg"
-            slot="icon"
-            class="display_img"
+              slot="icon"
+              class="display_img"
+              src="https://pineapple.edgeless.top/picbed/down/1.jpg"
           />
           <template #extra>
             <a-space direction="vertical">
               <a-space>
                 <template v-if="enable_download">
                   <a-button
-                    key="console"
-                    type="primary"
-                    @click="onClickHubDownload"
-                    >立即下载</a-button
+                      key="console"
+                      type="primary"
+                      @click="onClickHubDownload"
+                  >立即下载
+                  </a-button
                   >
                 </template>
                 <template v-else>
                   <a-button
-                    key="console"
-                    type="primary"
-                    @click="
+                      key="console"
+                      type="primary"
+                      @click="
                       goto(
                         'https://wiki.edgeless.top/v2/guide/burn_manual.html'
                       )
                     "
-                    >手动制作</a-button
+                  >手动制作
+                  </a-button
                   >
                 </template>
                 <a-dropdown-button
-                  v-on:click="stationAlert('https://zfile.edgeless.top/2/main')"
+                    v-on:click="stationAlert('https://zfile.edgeless.top/2/main')"
                 >
                   访问网页版
-                  <a-icon slot="icon" type="down" />
+                  <a-icon slot="icon" type="down"/>
                   <a-menu slot="overlay">
                     <a-menu-item
-                      key="0"
-                      v-on:click="
+                        key="0"
+                        v-on:click="
                         stationAlert(
                           'https://home.edgeless.top/jump/lurenjia.html'
                         )
                       "
                     >
-                      <a-icon type="hdd" />访问备用站</a-menu-item
+                      <a-icon type="hdd"/>
+                      访问备用站
+                    </a-menu-item
                     >
                     <a-menu-item
-                      key="1"
-                      v-on:click="
+                        key="1"
+                        v-on:click="
                         stationAlert('https://home.edgeless.top/jump/189.html')
                       "
                     >
-                      <a-icon type="cloud" />访问天翼盘</a-menu-item
+                      <a-icon type="cloud"/>
+                      访问天翼盘
+                    </a-menu-item
                     >
                     <a-menu-item
-                      key="2"
-                      v-on:click="
+                        key="2"
+                        v-on:click="
                         goto(
                           'https://pineapple.edgeless.top/api/v2/info/iso_addr'
                         )
                       "
                     >
-                      <a-icon type="file" />下载ISO镜像</a-menu-item
+                      <a-icon type="file"/>
+                      下载ISO镜像
+                    </a-menu-item
                     >
                   </a-menu>
                 </a-dropdown-button>
               </a-space>
-              <br />
+              <br/>
               <a-tooltip placement="right">
                 <template slot="title"
-                  >Edgeless Hub的源代码已经公开在<a
+                >Edgeless Hub的源代码已经公开在<a
                     href="https://github.com/EdgelessPE/edgeless-hub"
                     target="_blank"
-                    >GitHub仓库</a
-                  >，欢迎审阅</template
+                >GitHub仓库</a
+                >，欢迎审阅
+                </template
                 >
 
-                <p><a-icon type="question-circle" /> 这个应用是否安全？</p>
+                <p>
+                  <a-icon type="question-circle"/>
+                  这个应用是否安全？
+                </p>
               </a-tooltip>
             </a-space>
           </template>
@@ -153,6 +167,7 @@
 </template>
 <script>
 import Notice from "@/Notice";
+
 const ua = require("ua-device");
 export default {
   name: "Download",
@@ -163,6 +178,7 @@ export default {
       hub_addr: "",
       enable_download: false,
       drawerVisible: false,
+      address: ""
     };
   },
   components: {
@@ -176,7 +192,7 @@ export default {
     },
     onClickHubDownload() {
       this.drawerVisible = true;
-      this.goto("https://pineapple.edgeless.top/api/v2/info/hub_addr");
+      this.goto(this.address);
     },
     onCloseDrawer() {
       this.drawerVisible = false;
@@ -185,17 +201,17 @@ export default {
       this.$info({
         title: "推荐使用Edgeless Hub",
         content:
-          "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
+            "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
         onOk() {
           document.location = url;
         },
-        onCancel:this.uaConfig,
+        onCancel: this.uaConfig,
         okText: "继续前往",
         maskClosable: true,
         closable: true,
       });
     },
-    uaConfig(){
+    uaConfig() {
       //判断ua
       let UA = new ua(navigator.userAgent);
       //console.log(UA);
@@ -237,7 +253,8 @@ export default {
             content: "请手动制作启动盘",
           });
         }
-      }}
+      }
+    }
   },
   created() {
     //获取年份
@@ -246,15 +263,16 @@ export default {
 
     //获取Hub版本号和下载地址
     this.$axios
-      .get("https://pineapple.edgeless.top/api/v2/info/hub_version")
-      .then((res) => {
-        this.hub_version = res.data;
-      });
+        .get("https://pineapple.edgeless.top/api/v2/info/hub")
+        .then((res) => {
+          this.hub_version = res.data.version;
+          this.address = res.data.address
+        });
 
     //获取跳转参数
-    let match=window.location.search.substring(1).match(/backup=[\d]/)
-    if(match){
-      let targetIndex=match[0].split("=")[1]
+    let match = window.location.search.substring(1).match(/backup=[\d]/)
+    if (match) {
+      let targetIndex = match[0].split("=")[1]
       console.log(targetIndex)
       switch (targetIndex) {
         case "1":
@@ -266,7 +284,7 @@ export default {
         default :
           console.log("Error target index")
       }
-    }else {
+    } else {
       this.uaConfig()
     }
 
@@ -280,12 +298,14 @@ export default {
   width: 31px;
   height: 30px;
 }
+
 .title {
   width: 120px;
   height: 15px;
   margin: -32px 0 0 0;
   font-size: large;
 }
+
 .display_img {
   width: 600px;
   height: auto;
