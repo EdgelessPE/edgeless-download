@@ -263,11 +263,18 @@ export default {
 
     //获取Hub版本号和下载地址
     this.$axios
-        .get("https://pineapple.edgeless.top/api/v2/info/hub")
+        .get("https://pineapple.edgeless.top/api/v2/info/hub",{timeout:5000})
         .then((res) => {
           this.hub_version = res.data.version;
           this.address = res.data.address
-        });
+        })
+    .catch((e)=>{
+      console.log(e)
+      this.$error({
+        title:"似乎无法连接到菠萝云",
+        content:"已知部分地区（浙江等）的移动宽带无法连接到菠萝云，我们已经安排服务器供应商前去交涉，当然也有可能是我们的服务器发生了故障"
+      })
+    });
 
     //获取跳转参数
     let match = window.location.search.substring(1).match(/backup=[\d]/)
