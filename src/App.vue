@@ -45,7 +45,7 @@
             v-if="!enable_download"
             banner
             closable
-            message="Edgeless Hub只能在Windows10 64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛"
+            message="Edgeless Hub只能在Windows10/11 64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛"
         />
         <Notice v-else channel="Down"/>
         <a-result>
@@ -228,9 +228,9 @@ export default {
           //判断是否为10
           if (UA.os.version.original < 10) {
             this.$info({
-              title: "您不在使用Windows10系统",
+              title: "不支持过时的Windows系统",
               content:
-                  "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
+                  "Edgeless Hub只能在Windows10/11 64位系统上运行，请手动制作启动盘，或尝试绕过这一限制",
             });
           } else {
             //判断系统位数
@@ -240,9 +240,9 @@ export default {
             } else {
               //对Win10 32位系统进行提示
               this.$info({
-                title: "您正在使用32位系统",
+                title: "不支持过时的32位系统",
                 content:
-                    "Edgeless Hub只能在Windows10 64位系统上运行，请手动制作启动盘",
+                    "Edgeless Hub只能在Windows10/11 64位系统上运行，请手动制作启动盘，或升级您的系统",
               });
             }
           }
