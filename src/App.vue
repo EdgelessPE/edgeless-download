@@ -97,7 +97,7 @@
                   >
                 </template>
                 <a-dropdown-button
-                    v-on:click="unavailable()"
+                    v-on:click="stationAlert('https://zfile.edgeless.top')"
                 >
                   访问网页版
                   <a-icon slot="icon" type="down"/>
