@@ -97,7 +97,7 @@
                   >
                 </template>
                 <a-dropdown-button
-                    v-on:click="stationAlert('https://zfile.edgeless.top/2/main')"
+                    v-on:click="unavailable()"
                 >
                   访问网页版
                   <a-icon slot="icon" type="down"/>
@@ -207,6 +207,17 @@ export default {
         },
         onCancel: this.uaConfig,
         okText: "继续前往",
+        maskClosable: true,
+        closable: true,
+      });
+    },
+    unavailable() {
+      this.$info({
+        title: "网页版暂时不可用",
+        content:
+            "由于最近世纪互联出现了一点小变动，因此 Edgeless 网页版下载站的文件几乎全部丢失（悲）。请暂时移步备用站或天翼云。",
+        onCancel: this.uaConfig,
+        okText: "好",
         maskClosable: true,
         closable: true,
       });
