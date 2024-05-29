@@ -69,7 +69,7 @@
           <img
               slot="icon"
               class="display_img"
-              src="https://pineapple.edgeless.top/picbed/down/1.jpg"
+              src="demo.jpg"
           />
           <template #extra>
             <a-space direction="vertical">
@@ -128,7 +128,7 @@
                         key="2"
                         v-on:click="
                         goto(
-                          'https://pineapple.edgeless.top/api/v2/info/iso_addr'
+                          'https://legacy.edgeless.top/api/v2/info/iso_addr'
                         )
                       "
                     >
@@ -274,7 +274,7 @@ export default {
 
     //获取Hub版本号和下载地址
     this.$axios
-        .get("https://pineapple.edgeless.top/api/v2/info/hub",{timeout:5000})
+        .get("https://legacy.edgeless.top/api/v2/info/hub",{timeout:5000})
         .then((res) => {
           this.hub_version = res.data.version;
           this.address = res.data.address
