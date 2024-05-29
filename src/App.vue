@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <a-drawer
         :closable="true"
         :visible="drawerVisible"
@@ -17,7 +17,7 @@
       </a-button
       >
     </a-drawer>
-    <a-layout>
+    <a-layout style="height: 100%;">
       <a-layout-header style="background-color: white">
         <a-space>
           <img class="logo" src="https://home.edgeless.top/favicon.ico"/>
@@ -173,7 +173,7 @@ export default {
   name: "Download",
   data() {
     return {
-      year: 2021,
+      year: 114514,
       hub_version: "",
       hub_addr: "",
       enable_download: false,
