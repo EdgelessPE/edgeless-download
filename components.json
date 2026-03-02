@@ -1,0 +1,13 @@
+{
+  "tabSize": 2,
+  "trailingComma": "es5",
+  "semi": true,
+  "jsx": "react",
+  "plugins": ["tailwindcss"],
+  "tailwindcss": {
+    "config": "tailwind.config.js",
+    "css": "src/index.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  }
+}
