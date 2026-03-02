@@ -15,7 +15,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       ref={ref}
       className={cn(
         "fixed inset-0 z-50 flex items-end justify-center pointer-events-none",
-        shouldScaleBackground && "bg-black/80 pointer-events-auto",
+        shouldScaleBackground && "bg-black/60 pointer-events-auto backdrop-blur-sm",
       )}
       {...props}
     />
@@ -34,16 +34,16 @@ const DrawerClose = React.forwardRef<
 DrawerClose.displayName = "DrawerClose";
 
 const drawerVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition-transform duration-300 ease-out rounded-t-xl",
   {
     variants: {
       side: {
-        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        top: "inset-x-0 top-0 border-b data-[state=closed]:translate-y-[-100%] data-[state=open]:translate-y-0",
         bottom:
-          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+          "inset-x-0 bottom-0 border-t rounded-t-xl data-[state=closed]:translate-y-full data-[state=open]:translate-y-0",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:translate-x-[-100%] data-[state=open]:translate-x-0 sm:max-w-sm",
         right:
-          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:translate-x-full data-[state=open]:translate-x-0 sm:max-w-sm",
       },
     },
     defaultVariants: {
@@ -122,6 +122,10 @@ const DrawerOverlay = React.forwardRef<
   React.ElementRef<"div">,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("fixed inset-0 z-50 bg-black/80", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn("fixed inset-0 z-50 bg-black/60 backdrop-blur-sm", className)}
+    {...props}
+  />
 ));
 DrawerOverlay.displayName = "DrawerOverlay";

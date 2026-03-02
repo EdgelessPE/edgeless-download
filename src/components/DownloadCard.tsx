@@ -51,13 +51,13 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
 
   return (
     <TooltipProvider>
-      <div className="result-container">
-        <div className="result-title">
-          Edgeless Hub
+      <div className="py-12 text-center">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <h1 className="text-2xl font-semibold">Edgeless Hub</h1>
           {version && (
             <Badge
               color="blue"
-              className="version-badge cursor-pointer"
+              className="cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() =>
                 window.open(
                   EXTERNAL_URLS.wiki +
@@ -69,12 +69,18 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
             </Badge>
           )}
         </div>
-        <div className="result-subtitle">使用Edgeless聚合客户端制作启动盘和个性化您的Edgeless</div>
-        <div className="result-icon">
-          <img src="/demo.jpg" alt="Edgeless Hub Demo" className="display-img" />
+        <p className="text-muted-foreground mb-8">
+          使用Edgeless聚合客户端制作启动盘和个性化您的Edgeless
+        </p>
+        <div className="flex justify-center mb-10">
+          <img
+            src="/demo.jpg"
+            alt="Edgeless Hub Demo"
+            className="max-w-full h-auto rounded-lg border border-border"
+          />
         </div>
-        <div className="result-extra">
-          <div className="button-group">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex gap-3 justify-center flex-wrap">
             {enableDownload ? (
               <Button size="lg" onClick={onDownload}>
                 立即下载
@@ -113,7 +119,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
           </div>
           <Tooltip>
             <TooltipTrigger asChild>
-              <p className="help-text">
+              <p className="text-sm text-muted-foreground cursor-help flex items-center gap-1 hover:text-foreground transition-colors">
                 <HelpCircle className="w-4 h-4" />
                 这个应用是否安全？
               </p>
@@ -125,7 +131,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                   href={EXTERNAL_URLS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline"
+                  className="underline hover:text-primary transition-colors"
                 >
                   GitHub仓库
                 </a>

@@ -1,4 +1,12 @@
 import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 import { EXTERNAL_URLS } from "@/lib/api";
 
 interface PostDownloadDrawerProps {
@@ -11,27 +19,19 @@ export function PostDownloadDrawer({ open, onOpenChange }: PostDownloadDrawerPro
     window.location.href = EXTERNAL_URLS.wikiRequired;
   };
 
-  if (!open) return null;
-
   return (
-    <div className="drawer-overlay" onClick={() => onOpenChange(false)}>
-      <div
-        className="drawer-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="drawer-title"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="drawer-title" id="drawer-title">
-          感谢下载Edgeless Hub
-        </div>
-        <p className="drawer-description">
-          我们强烈建议您阅读Wiki后再使用Edgeless，在这里有大部分问题的解决方案和所有的Edgeless特色功能
-        </p>
-        <div className="drawer-footer">
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>感谢下载Edgeless Hub</DrawerTitle>
+          <DrawerDescription>
+            我们强烈建议您阅读Wiki后再使用Edgeless，在这里有大部分问题的解决方案和所有的Edgeless特色功能
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
           <Button onClick={handleConfirm}>好</Button>
-        </div>
-      </div>
-    </div>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   );
 }

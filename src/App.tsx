@@ -64,7 +64,7 @@ function App() {
     if (!messages.title) return null;
 
     return (
-      <Alert variant="destructive" className="mb-4 banner-alert">
+      <Alert variant="destructive" className="mb-6">
         <AlertTitle>{messages.title}</AlertTitle>
         <AlertDescription>{messages.content}</AlertDescription>
       </Alert>
@@ -72,12 +72,12 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <Header className="app-header" />
-      <main className="app-content">
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header className="border-b border-border" />
+      <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-4">
         {renderAlert()}
         {error && (
-          <Alert variant="destructive" className="mb-4">
+          <Alert variant="destructive" className="mb-6">
             <AlertTitle>错误</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
@@ -85,7 +85,7 @@ function App() {
         {enableDownload ? (
           <Notice channel="Down" />
         ) : (
-          <Alert variant="destructive" className="mb-4 banner-alert">
+          <Alert variant="destructive" className="mb-6">
             <AlertTitle>
               Edgeless Hub只能在Windows10/11
               64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛
@@ -98,7 +98,9 @@ function App() {
           onDownload={handleDownload}
         />
       </main>
-      <footer className="app-footer">Copyright © {year} Edgeless Project</footer>
+      <footer className="py-4 text-center text-sm text-muted-foreground border-t border-border">
+        Copyright © {year} Edgeless Project
+      </footer>
       <PostDownloadDrawer open={drawerOpen} onOpenChange={setDrawerOpen} />
     </div>
   );

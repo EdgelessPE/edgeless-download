@@ -13,17 +13,21 @@ export function Header({ className }: HeaderProps) {
 
   return (
     <header className={className}>
-      <div className="header-content">
-        <div className="header-brand">
-          <img src={EXTERNAL_URLS.favicon} alt="Edgeless Logo" className="logo" />
-          <span className="title">Edgeless</span>
+      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center">
+        <div className="flex items-center gap-2">
+          <img src={EXTERNAL_URLS.favicon} alt="Edgeless Logo" className="w-8 h-8" />
+          <span className="text-lg font-semibold">Edgeless</span>
         </div>
-        <nav className="nav-menu">
+        <nav className="ml-auto flex items-center h-full">
           {navItems.map((item) => (
             <a
               key={item.key}
               href={item.external ? item.href : "#"}
-              className={`nav-item ${item.key === "download" ? "active" : ""}`}
+              className={`px-5 h-full flex items-center text-sm font-medium transition-colors duration-150 hover:bg-secondary/60 ${
+                item.key === "download"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
             >
