@@ -166,6 +166,33 @@
 - Drawer组件: shadcn/ui Drawer组件
 - onClickHubDownload方法: 处理函数
 
+#### 3.4.1 推荐使用弹窗 (stationAlert)
+
+**功能描述**: 用户点击"访问网页版"时显示的推荐提示
+
+**弹窗内容**:
+- 标题: "推荐使用Edgeless Hub"
+- 内容: "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。"
+- 按钮: "继续前往" / "取消"
+- 确认后跳转到目标URL，取消后执行 uaConfig
+
+**目标URL**:
+- 网页版: https://zfile.edgeless.top
+- 备用站: https://home.edgeless.top/jump/lurenjia.html
+- 天翼盘: https://home.edgeless.top/jump/189.html
+
+---
+
+#### 3.4.2 网页版不可用弹窗 (unavailable)
+
+**功能描述**: 网页版不可用时显示的提示（当前未使用）
+
+**弹窗内容**:
+- 标题: "网页版暂时不可用"
+- 内容: "由于最近世纪互联出现了一点小变动，因此 Edgeless 网页版下载站的文件几乎全部丢失（悲）。请暂时移步备用站或天翼云。"
+- 按钮: "好"
+- 关闭后执行 uaConfig
+
 ---
 
 ### 3.5 外部链接导航
@@ -229,7 +256,7 @@
 |------|-----|------|
 | Hub信息 | `https://legacy.edgeless.top/api/v2/info/hub` | 获取版本和下载地址 |
 | 公告 | `https://legacy.edgeless.top/api/v2/info/notice` | 获取公告列表 |
-| ISO地址 | `https://legacy.edgeless.top/api/v2/info/iso_addr` | 获取ISO镜像地址 |
+| ISO地址 | `https://legacy.edgeless.top/api/v2/info/iso_addr` | 获取ISO镜像地址 (重定向) |
 
 ---
 
