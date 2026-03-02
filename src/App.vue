@@ -102,7 +102,7 @@
                   访问网页版
                   <a-icon slot="icon" type="down"/>
                   <a-menu slot="overlay">
-                    <a-menu-item
+                    <!-- <a-menu-item
                         key="0"
                         v-on:click="
                         stationAlert(
@@ -123,7 +123,7 @@
                       <a-icon type="cloud"/>
                       访问天翼盘
                     </a-menu-item
-                    >
+                    > -->
                     <a-menu-item
                         key="2"
                         v-on:click="
@@ -282,8 +282,8 @@ export default {
     .catch((e)=>{
       console.log(e)
       this.$error({
-        title:"似乎无法连接到菠萝云",
-        content:"已知部分地区（浙江等）的移动宽带无法连接到菠萝云，我们已经安排服务器供应商前去交涉，当然也有可能是我们的服务器发生了故障"
+        title:"似乎无法连接到服务器",
+        content:"可能是我们的服务器发生了故障，请稍后再试"
       })
     });
 
