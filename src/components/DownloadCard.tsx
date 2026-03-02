@@ -124,7 +124,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                 这个应用是否安全？
               </p>
             </TooltipTrigger>
-            <TooltipContent>
+            <TooltipContent side="right">
               <p>
                 Edgeless Hub的源代码已经公开在
                 <a
