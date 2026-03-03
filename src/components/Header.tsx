@@ -40,7 +40,7 @@ export function Header({ className }: HeaderProps) {
           <button
             type="button"
             onClick={toggleTheme}
-            className="ml-4 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+            className="cursor-pointer ml-4 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
             aria-label="切换主题"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

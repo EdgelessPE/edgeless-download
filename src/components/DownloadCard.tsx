@@ -91,7 +91,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
               alt="Edgeless Hub Demo"
               className="max-w-full h-auto rounded-lg border border-border"
             />
-            <div className="absolute inset-0 rounded-lg dark:bg-black/20 pointer-events-none" />
+            <div className="absolute inset-0 rounded-lg bg-black/0 dark:bg-black/20 pointer-events-none" />
           </div>
         </div>
 
