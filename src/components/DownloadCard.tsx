@@ -114,7 +114,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={handleWebVersion}>
+                <DropdownMenuItem className="cursor-pointer" onClick={handleWebVersion}>
                   <ExternalLink className="w-4 h-4 mr-2" />
                   访问网页版
                 </DropdownMenuItem>
@@ -126,7 +126,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                   <ExternalLink className="w-4 h-4 mr-2" />
                   访问天翼盘
                 </DropdownMenuItem> */}
-                <DropdownMenuItem onClick={handleDownloadISO}>
+                <DropdownMenuItem className="cursor-pointer" onClick={handleDownloadISO}>
                   <FileIcon className="w-4 h-4 mr-2" />
                   下载ISO镜像
                 </DropdownMenuItem>
