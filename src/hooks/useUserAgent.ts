@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { UAParser } from "ua-parser-js";
 
-export type UAStatus = "loading" | "mobile" | "windows-old" | "32bit" | "unsupported" | "ok";
+export type UAStatus = "loading" | "windows-old" | "32bit" | "unsupported" | "ok";
 
 export interface UseUserAgentResult {
   status: UAStatus;
@@ -28,7 +28,7 @@ export function useUserAgent(): UseUserAgentResult {
     const is64Bit = ua.toLowerCase().includes("win64") || ua.toLowerCase().includes("wow64");
 
     if (isMobile) {
-      setStatus("mobile");
+      setStatus("ok");
       setEnableDownload(true);
       return;
     }
@@ -62,10 +62,10 @@ export function useUserAgent(): UseUserAgentResult {
   return {
     status,
     enableDownload,
-    isMobile: status === "mobile",
-    isWindows: status !== "unsupported" && status !== "mobile",
-    isWindows10OrLater: status !== "windows-old" && status !== "unsupported" && status !== "mobile",
-    is64Bit: status !== "32bit" && status !== "unsupported" && status !== "mobile",
+    isMobile: false,
+    isWindows: status !== "unsupported",
+    isWindows10OrLater: status !== "windows-old" && status !== "unsupported",
+    is64Bit: status !== "32bit" && status !== "unsupported",
   };
 }
 
@@ -75,12 +75,6 @@ export function getStatusMessage(status: UAStatus): {
   a_type: "warning" | "error";
 } {
   switch (status) {
-    case "mobile":
-      return {
-        title: "请使用PC访问本站",
-        content: "移动端无法获得最佳的浏览体验",
-        a_type: "warning",
-      };
     case "windows-old":
       return {
         title: "不支持过时的Windows系统",
