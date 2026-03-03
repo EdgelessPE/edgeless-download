@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getNotice } from "@/lib/api";
 import type { NoticeItem } from "@/types";
 
@@ -9,16 +8,41 @@ interface NoticeProps {
 
 const STORAGE_KEY = "edgeless_ignore_notice_id";
 
-function mapAlertType(aType: string): "default" | "destructive" | "success" | "warning" {
+function mapNoticeStyle(aType: string): {
+  bg: string;
+  border: string;
+  text: string;
+  iconBg: string;
+} {
   switch (aType) {
     case "warning":
-      return "warning";
+      return {
+        bg: "bg-amber-50 dark:bg-amber-950/30",
+        border: "border-amber-200 dark:border-amber-800",
+        text: "text-amber-800 dark:text-amber-200",
+        iconBg: "bg-amber-100 dark:bg-amber-900",
+      };
     case "error":
-      return "destructive";
+      return {
+        bg: "bg-red-50 dark:bg-red-950/30",
+        border: "border-red-200 dark:border-red-800",
+        text: "text-red-800 dark:text-red-200",
+        iconBg: "bg-red-100 dark:bg-red-900",
+      };
     case "success":
-      return "success";
+      return {
+        bg: "bg-green-50 dark:bg-green-950/30",
+        border: "border-green-200 dark:border-green-800",
+        text: "text-green-800 dark:text-green-200",
+        iconBg: "bg-green-100 dark:bg-green-900",
+      };
     default:
-      return "default";
+      return {
+        bg: "bg-blue-50 dark:bg-blue-950/30",
+        border: "border-blue-200 dark:border-blue-800",
+        text: "text-blue-800 dark:text-blue-200",
+        iconBg: "bg-blue-100 dark:bg-blue-900",
+      };
   }
 }
 
@@ -58,19 +82,27 @@ export function Notice({ channel = "Down" }: NoticeProps) {
 
   if (!isVisible || !notice) return null;
 
+  const style = mapNoticeStyle(notice.a_type);
+
   return (
-    <Alert variant={mapAlertType(notice.a_type)} className="mb-4">
-      {notice.show_icon && <AlertTitle>{notice.message}</AlertTitle>}
-      <AlertDescription>{notice.description}</AlertDescription>
-      {notice.close_text && (
-        <button
-          type="button"
-          onClick={handleClose}
-          className="absolute top-2 right-2 text-sm opacity-70 hover:opacity-100"
-        >
-          {notice.close_text}
-        </button>
-      )}
-    </Alert>
+    <div className={`fixed top-16 left-0 right-0 z-40 border-b ${style.bg} ${style.border}`}>
+      <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3">
+        <div className="flex-1 min-w-0">
+          <p className={`text-sm font-medium ${style.text} truncate`}>{notice.message}</p>
+          {notice.description && (
+            <p className={`text-xs ${style.text} opacity-80 truncate`}>{notice.description}</p>
+          )}
+        </div>
+        {notice.close_text && (
+          <button
+            type="button"
+            onClick={handleClose}
+            className={`shrink-0 px-3 py-1 rounded-md text-sm ${style.text} opacity-60 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/10 transition-all`}
+          >
+            {notice.close_text}
+          </button>
+        )}
+      </div>
+    </div>
   );
 }

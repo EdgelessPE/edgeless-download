@@ -74,7 +74,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header className="border-b border-border" />
-      <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-4">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-4 pt-20">
         {renderAlert()}
         {error && (
           <Alert variant="destructive" className="mb-6">
