@@ -8,7 +8,7 @@ interface NoticeProps {
 
 const STORAGE_KEY = "edgeless_ignore_notice_id";
 
-function mapNoticeStyle(aType: string): {
+export function mapNoticeStyle(aType: string): {
   bg: string;
   border: string;
   text: string;

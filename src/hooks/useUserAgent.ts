@@ -69,30 +69,38 @@ export function useUserAgent(): UseUserAgentResult {
   };
 }
 
-export function getStatusMessage(status: UAStatus): { title: string; content: string } {
+export function getStatusMessage(status: UAStatus): {
+  title: string;
+  content: string;
+  a_type: "warning" | "error";
+} {
   switch (status) {
     case "mobile":
       return {
         title: "请使用PC访问本站",
         content: "移动端无法获得最佳的浏览体验",
+        a_type: "warning",
       };
     case "windows-old":
       return {
         title: "不支持过时的Windows系统",
         content:
           "Edgeless Hub只能在Windows10/11 64位系统上运行，请手动制作启动盘，或尝试绕过这一限制",
+        a_type: "error",
       };
     case "32bit":
       return {
         title: "不支持过时的32位系统",
         content: "Edgeless Hub只能在Windows10/11 64位系统上运行，请手动制作启动盘，或升级您的系统",
+        a_type: "error",
       };
     case "unsupported":
       return {
         title: "您正在使用类UNIX系统浏览此页面",
         content: "请手动制作启动盘",
+        a_type: "error",
       };
     default:
-      return { title: "", content: "" };
+      return { title: "", content: "", a_type: "warning" };
   }
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DownloadCard } from "@/components/DownloadCard";
 import { Header } from "@/components/Header";
-import { Notice } from "@/components/Notice";
+import { mapNoticeStyle, Notice } from "@/components/Notice";
 import { PostDownloadDrawer } from "@/components/PostDownloadDrawer";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getStatusMessage, useUserAgent } from "@/hooks/useUserAgent";
@@ -63,11 +63,17 @@ function App() {
     const messages = getStatusMessage(status);
     if (!messages.title) return null;
 
+    const style = mapNoticeStyle(messages.a_type);
+
     return (
-      <Alert variant="destructive" className="mb-6">
-        <AlertTitle>{messages.title}</AlertTitle>
-        <AlertDescription>{messages.content}</AlertDescription>
-      </Alert>
+      <div className={`fixed top-16 left-0 right-0 z-40 border-b ${style.bg} ${style.border}`}>
+        <div className="max-w-5xl mx-auto px-6 py-3 flex items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <p className={`text-sm font-medium ${style.text} truncate`}>{messages.title}</p>
+            <p className={`text-xs ${style.text} opacity-80 truncate`}>{messages.content}</p>
+          </div>
+        </div>
+      </div>
     );
   };
 
@@ -82,16 +88,7 @@ function App() {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-        {enableDownload ? (
-          <Notice channel="Down" />
-        ) : (
-          <Alert variant="destructive" className="mb-6">
-            <AlertTitle>
-              Edgeless Hub只能在Windows10/11
-              64位系统上运行，我们视能够日常使用此版本Windows系统的电脑为Edgeless的硬件准入门槛
-            </AlertTitle>
-          </Alert>
-        )}
+        {enableDownload && status === "ok" ? <Notice channel="Down" /> : null}
         <DownloadCard
           hubInfo={hubInfo}
           enableDownload={enableDownload}
