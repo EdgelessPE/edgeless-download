@@ -5,7 +5,7 @@ import { Notice } from "@/components/Notice";
 import { PostDownloadDrawer } from "@/components/PostDownloadDrawer";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getStatusMessage, useUserAgent } from "@/hooks/useUserAgent";
-import { EXTERNAL_URLS, getHubInfo } from "@/lib/api";
+import { getHubInfo } from "@/lib/api";
 import type { HubInfo } from "@/types";
 
 function App() {
@@ -29,26 +29,26 @@ function App() {
     fetchHubInfo();
   }, []);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const backup = params.get("backup");
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  //   const backup = params.get("backup");
 
-    if (backup) {
-      const backupUrls: Record<string, string> = {
-        "1": EXTERNAL_URLS.backup1,
-        "2": EXTERNAL_URLS.backup2,
-      };
+  //   if (backup) {
+  //     const backupUrls: Record<string, string> = {
+  //       "1": EXTERNAL_URLS.backup1,
+  //       "2": EXTERNAL_URLS.backup2,
+  //     };
 
-      if (backupUrls[backup]) {
-        const confirmed = window.confirm(
-          "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
-        );
-        if (confirmed) {
-          window.location.href = backupUrls[backup];
-        }
-      }
-    }
-  }, []);
+  //     if (backupUrls[backup]) {
+  //       const confirmed = window.confirm(
+  //         "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
+  //       );
+  //       if (confirmed) {
+  //         window.location.href = backupUrls[backup];
+  //       }
+  //     }
+  //   }
+  // }, []);
 
   const handleDownload = () => {
     if (hubInfo?.address) {

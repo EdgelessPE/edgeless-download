@@ -1,6 +1,15 @@
 import { ChevronDown, ExternalLink, FileIcon, HelpCircle } from "lucide-react";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,14 +28,17 @@ interface DownloadCardProps {
 
 export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCardProps) {
   const version = hubInfo?.version || "";
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertUrl, setAlertUrl] = useState("");
 
   const handleStationAlert = (url: string) => {
-    const confirmed = window.confirm(
-      "Edgeless Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。",
-    );
-    if (confirmed) {
-      window.location.href = url;
-    }
+    setAlertUrl(url);
+    setIsAlertOpen(true);
+  };
+
+  const handleConfirmAlert = () => {
+    setIsAlertOpen(false);
+    window.location.href = alertUrl;
   };
 
   const handleManual = () => {
@@ -141,6 +153,23 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
           </Tooltip>
         </div>
       </div>
+      <Dialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>提示</DialogTitle>
+            <DialogDescription>
+              Edgeless
+              Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsAlertOpen(false)}>
+              取消
+            </Button>
+            <Button onClick={handleConfirmAlert}>确定</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </TooltipProvider>
   );
 }
