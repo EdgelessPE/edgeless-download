@@ -40,6 +40,8 @@
   --radius-lg: 0.75rem;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .dark {
   --color-background: oklch(15% 0.01 280);
   --color-foreground: oklch(95% 0 0);
