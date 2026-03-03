@@ -4,15 +4,13 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 transition-colors duration-150 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
+  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground border-border",
+        default: "bg-background text-foreground",
         destructive:
-          "border-destructive/40 bg-destructive/10 text-destructive dark:border-destructive [&>svg]:text-destructive",
-        success: "border-success/40 bg-success/10 text-success [&>svg]:text-success",
-        warning: "border-warning/40 bg-warning/10 text-warning [&>svg]:text-warning",
+          "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
       },
     },
     defaultVariants: {
@@ -33,7 +31,7 @@ const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<H
   ({ className, ...props }, ref) => (
     <h5
       ref={ref}
-      className={cn("mb-1 font-semibold leading-tight tracking-tight", className)}
+      className={cn("mb-1 font-medium leading-none tracking-tight", className)}
       {...props}
     />
   ),
@@ -48,4 +46,4 @@ const AlertDescription = React.forwardRef<
 ));
 AlertDescription.displayName = "AlertDescription";
 
-export { Alert, AlertTitle, AlertDescription, alertVariants };
+export { Alert, AlertTitle, AlertDescription };
