@@ -1,3 +1,5 @@
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 import { EXTERNAL_URLS } from "@/lib/api";
 
 interface HeaderProps {
@@ -5,6 +7,7 @@ interface HeaderProps {
 }
 
 export function Header({ className }: HeaderProps) {
+  const { isDark, toggleTheme } = useTheme();
   const navItems = [
     { key: "home", label: "首页", href: EXTERNAL_URLS.home, external: true },
     { key: "docs", label: "文档", href: EXTERNAL_URLS.wiki, external: true },
@@ -34,6 +37,14 @@ export function Header({ className }: HeaderProps) {
               {item.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="ml-4 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+            aria-label="切换主题"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
         </nav>
       </div>
     </header>
