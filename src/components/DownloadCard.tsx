@@ -129,7 +129,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <Tooltip>
+          <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <p className="text-sm text-muted-foreground cursor-help flex items-center gap-1 hover:text-foreground transition-colors">
                 <HelpCircle className="w-4 h-4" />
