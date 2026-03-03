@@ -105,7 +105,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="lg">
-                  访问网页版
+                  更多选项
                   <ChevronDown className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
@@ -156,7 +156,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
       <Dialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>提示</DialogTitle>
+            <DialogTitle>推荐使用 Edgeless Hub</DialogTitle>
             <DialogDescription>
               Edgeless
               Hub使用国内千兆上行服务器作为镜像源，且支持插件更新、快速配置、获取内测等网页版没有的功能，而且免费开源无广告。
