@@ -85,12 +85,16 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
           使用Edgeless聚合客户端制作启动盘和个性化您的Edgeless
         </p>
         <div className="flex justify-center mb-10">
-          <img
-            src="/demo.jpg"
-            alt="Edgeless Hub Demo"
-            className="max-w-full h-auto rounded-lg border border-border"
-          />
+          <div className="relative">
+            <img
+              src="/demo.jpg"
+              alt="Edgeless Hub Demo"
+              className="max-w-full h-auto rounded-lg border border-border"
+            />
+            <div className="absolute inset-0 rounded-lg bg-black/0 dark:bg-black/20 pointer-events-none" />
+          </div>
         </div>
+
         <div className="flex flex-col items-center gap-4">
           <div className="flex gap-3 justify-center flex-wrap">
             {enableDownload ? (
