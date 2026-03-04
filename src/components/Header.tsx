@@ -23,7 +23,7 @@ export function Header({ className }: HeaderProps) {
           <img src={EXTERNAL_URLS.favicon} alt="Edgeless Logo" className="w-8 h-8" />
           <span className="text-lg font-semibold">Edgeless</span>
         </div>
-        <div className="hidden md:flex items-center h-full ml-auto">
+        <div className="flex-1 hidden md:flex items-center h-full">
           {navItems.map((item) => (
             <a
               key={item.key}
@@ -42,7 +42,7 @@ export function Header({ className }: HeaderProps) {
           <button
             type="button"
             onClick={toggleTheme}
-            className="cursor-pointer ml-4 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+            className="cursor-pointer ml-auto p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
             aria-label="切换主题"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
