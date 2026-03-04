@@ -86,11 +86,11 @@ export function Notice({ channel = "Down" }: NoticeProps) {
 
   return (
     <div className={style.bg}>
-      <div className="max-w-5xl mx-auto px-4 md:px-6 py-3 flex items-center gap-3">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-3 flex items-start gap-3">
         <div className="flex-1 min-w-0">
-          <p className={`text-sm font-medium ${style.text} truncate`}>{notice.message}</p>
+          <p className={`text-sm font-medium ${style.text}`}>{notice.message}</p>
           {notice.description && (
-            <p className={`text-xs ${style.text} opacity-80 truncate`}>{notice.description}</p>
+            <p className={`text-xs ${style.text} opacity-80 mt-0.5`}>{notice.description}</p>
           )}
         </div>
         {notice.close_text && (
