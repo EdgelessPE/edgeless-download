@@ -57,36 +57,38 @@ export function Header({ className }: HeaderProps) {
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-2">
-            {navItems.map((item) => (
-              <a
-                key={item.key}
-                href={item.external ? item.href : "#"}
-                className={`px-4 py-3 text-sm font-medium rounded-md transition-colors ${
-                  item.key === "download"
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
-                }`}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="cursor-pointer mt-2 p-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors flex items-center gap-3"
+      <div
+        className={`md:hidden border-t border-border bg-background overflow-hidden transition-all duration-200 ease-in-out ${
+          mobileMenuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-2">
+          {navItems.map((item) => (
+            <a
+              key={item.key}
+              href={item.external ? item.href : "#"}
+              className={`px-4 py-3 text-sm font-medium rounded-md transition-colors ${
+                item.key === "download"
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
+              }`}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+              onClick={() => setMobileMenuOpen(false)}
             >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              <span className="text-sm font-medium">切换主题</span>
-            </button>
-          </div>
+              {item.label}
+            </a>
+          ))}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="cursor-pointer mt-2 p-3 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors flex items-center gap-3"
+          >
+            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <span className="text-sm font-medium">切换主题</span>
+          </button>
         </div>
-      )}
+      </div>
     </header>
   );
 }
