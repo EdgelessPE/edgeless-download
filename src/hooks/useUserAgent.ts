@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { UAParser } from "ua-parser-js";
 
-export type UAStatus = "loading" | "windows-old" | "32bit" | "unsupported" | "ok";
+export type UAStatus = "loading" | "windows-old" | "32bit" | "unsupported" | "mobile" | "ok";
 
 export interface UseUserAgentResult {
   status: UAStatus;
   enableDownload: boolean;
-  isMobile: boolean;
-  isWindows: boolean;
-  isWindows10OrLater: boolean;
-  is64Bit: boolean;
+  // isMobile: boolean;
+  // isWindows: boolean;
+  // isWindows10OrLater: boolean;
+  // is64Bit: boolean;
 }
 
 export function useUserAgent(): UseUserAgentResult {
@@ -28,8 +28,8 @@ export function useUserAgent(): UseUserAgentResult {
     const is64Bit = ua.toLowerCase().includes("win64") || ua.toLowerCase().includes("wow64");
 
     if (isMobile) {
-      setStatus("ok");
-      setEnableDownload(true);
+      setStatus("mobile");
+      setEnableDownload(false);
       return;
     }
 
@@ -62,10 +62,6 @@ export function useUserAgent(): UseUserAgentResult {
   return {
     status,
     enableDownload,
-    isMobile: false,
-    isWindows: status !== "unsupported",
-    isWindows10OrLater: status !== "windows-old" && status !== "unsupported",
-    is64Bit: status !== "32bit" && status !== "unsupported",
   };
 }
 
@@ -75,6 +71,12 @@ export function getStatusMessage(status: UAStatus): {
   a_type: "warning" | "error";
 } {
   switch (status) {
+    case "mobile":
+      return {
+        title: "您正在使用移动端浏览此页面",
+        content: "请在电脑端访问以下载Edgeless Hub",
+        a_type: "warning",
+      };
     case "windows-old":
       return {
         title: "不支持过时的Windows系统",
