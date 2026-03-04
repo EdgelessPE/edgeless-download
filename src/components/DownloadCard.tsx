@@ -1,4 +1,4 @@
-import { ChevronDown, ExternalLink, FileIcon, HelpCircle } from "lucide-react";
+import { ChevronDown, Download, ExternalLink, FileIcon, HelpCircle, Wrench } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -114,6 +114,17 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
+                {enableDownload ? (
+                  <DropdownMenuItem className="cursor-pointer" onClick={handleManual}>
+                    <Wrench className="w-4 h-4 mr-2" />
+                    手动制作
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem className="cursor-pointer" onClick={onDownload}>
+                    <Download className="w-4 h-4 mr-2" />
+                    仍然下载
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem className="cursor-pointer" onClick={handleWebVersion}>
                   <ExternalLink className="w-4 h-4 mr-2" />
                   访问网页版
