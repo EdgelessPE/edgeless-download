@@ -1,4 +1,4 @@
-import { ChevronDown, Download, ExternalLink, FileIcon, HelpCircle, Wrench } from "lucide-react";
+import { ChevronDown, Disc, Download, ExternalLink, HelpCircle, Wrench } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -138,7 +138,7 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
                   访问天翼盘
                 </DropdownMenuItem> */}
                 <DropdownMenuItem className="cursor-pointer" onClick={handleDownloadISO}>
-                  <FileIcon className="w-4 h-4 mr-2" />
+                  <Disc className="w-4 h-4 mr-2" />
                   下载ISO镜像
                 </DropdownMenuItem>
               </DropdownMenuContent>
