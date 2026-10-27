@@ -1,5 +1,8 @@
 import { ChevronDown, Disc, Download, ExternalLink, HelpCircle, Wrench } from "lucide-react";
 import { useState } from "react";
+import demoFallback from "@/assets/demo.jpg";
+import demo from "@/assets/demo.webp";
+import demoSmall from "@/assets/demo-808.webp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -86,11 +89,21 @@ export function DownloadCard({ hubInfo, enableDownload, onDownload }: DownloadCa
         </p>
         <div className="flex justify-center mb-10">
           <div className="relative">
-            <img
-              src="/demo.jpg"
-              alt="Edgeless Hub Demo"
-              className="max-w-full h-auto rounded-lg border border-border"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${demoSmall} 808w, ${demo} 1616w`}
+                sizes="(min-width: 1024px) 976px, (min-width: 768px) calc(100vw - 48px), calc(100vw - 32px)"
+              />
+              <img
+                src={demoFallback}
+                alt="Edgeless Hub Demo"
+                width={1616}
+                height={790}
+                fetchPriority="high"
+                className="max-w-full h-auto rounded-lg border border-border"
+              />
+            </picture>
             <div className="absolute inset-0 rounded-lg bg-black/0 dark:bg-black/20 pointer-events-none" />
           </div>
         </div>

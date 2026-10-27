@@ -20,7 +20,13 @@ export function Header({ className }: HeaderProps) {
     <header className={className}>
       <div className="max-w-5xl mx-auto px-4 md:px-6 h-16 flex items-center">
         <div className="flex items-center gap-2">
-          <img src={EXTERNAL_URLS.favicon} alt="Edgeless Logo" className="w-8 h-8" />
+          <img
+            src={EXTERNAL_URLS.favicon}
+            alt="Edgeless Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8"
+          />
           <span className="text-lg font-semibold">Edgeless</span>
         </div>
         <div className="flex-1 hidden md:flex items-center h-full">

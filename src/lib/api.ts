@@ -1,20 +1,26 @@
-import axios from "axios";
 import type { HubInfo, NoticeItem } from "@/types";
 
-const apiClient = axios.create({
-  timeout: 5000,
-});
+async function getJSON<T>(url: string): Promise<T> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    return (await response.json()) as T;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 export async function getHubInfo(): Promise<HubInfo> {
-  const response = await apiClient.get<HubInfo>("https://legacy.edgeless.top/api/v2/info/hub");
-  return response.data;
+  return getJSON<HubInfo>(API_ENDPOINTS.hub);
 }
 
 export async function getNotice(): Promise<NoticeItem[]> {
-  const response = await apiClient.get<NoticeItem[]>(
-    "https://legacy.edgeless.top/api/v2/info/notice",
-  );
-  return response.data;
+  return getJSON<NoticeItem[]>(API_ENDPOINTS.notice);
 }
 
 export const API_ENDPOINTS = {

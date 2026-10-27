@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { DownloadCard } from "@/components/DownloadCard";
 import { Header } from "@/components/Header";
 import { mapNoticeStyle, Notice } from "@/components/Notice";
-import { PostDownloadDrawer } from "@/components/PostDownloadDrawer";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getStatusMessage, useUserAgent } from "@/hooks/useUserAgent";
 import { getHubInfo } from "@/lib/api";
 import type { HubInfo } from "@/types";
+
+const PostDownloadDrawer = lazy(() =>
+  import("@/components/PostDownloadDrawer").then((module) => ({
+    default: module.PostDownloadDrawer,
+  })),
+);
 
 function App() {
   const [year] = useState(new Date().getFullYear());
   const [hubInfo, setHubInfo] = useState<HubInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [hasDownloaded, setHasDownloaded] = useState(false);
 
   const { enableDownload, status } = useUserAgent();
 
@@ -52,6 +58,7 @@ function App() {
 
   const handleDownload = () => {
     if (hubInfo?.address) {
+      setHasDownloaded(true);
       setDrawerOpen(true);
       window.location.href = hubInfo.address;
     }
@@ -98,7 +105,11 @@ function App() {
       <footer className="py-4 text-center text-sm text-muted-foreground border-t border-border">
         Copyright © {year} Edgeless Project
       </footer>
-      <PostDownloadDrawer open={drawerOpen} onOpenChange={setDrawerOpen} />
+      {hasDownloaded && (
+        <Suspense fallback={null}>
+          <PostDownloadDrawer open={drawerOpen} onOpenChange={setDrawerOpen} />
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -31,7 +31,7 @@
 - `Flex` - 间距布局
 
 ### 工具库
-- **axios** - HTTP客户端
+- **Fetch API** - 浏览器原生 HTTP 请求，保留 5000ms 超时
 - **ua-parser-js** - User-Agent解析
 - **class-variance-authority** - 组件变体管理 (shadcn/ui依赖)
 
@@ -89,7 +89,7 @@
 
 **失败处理**: 超时或请求失败时显示错误提示"似乎无法连接到服务器"
 
-**相关代码**: React组件 useEffect 中调用 axios.get
+**相关代码**: React组件 useEffect 中调用 `src/lib/api.ts` 的 `getHubInfo`，通过 Fetch API 获取数据
 
 ---
 
@@ -264,7 +264,7 @@
 
 - **Favicon**: https://home.edgeless.top/favicon.ico
 - **Logo图片**: https://home.edgeless.top/favicon.ico
-- **演示图片**: ./public/demo.jpg (本地)
+- **演示图片**: `src/assets/demo.webp` 和 `src/assets/demo-808.webp`，按屏幕尺寸选择；`src/assets/demo.jpg` 为兼容回退图片
 
 ---
 
